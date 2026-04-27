@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopFlix — Watch</title>
+  <link rel="stylesheet" href="/shared/main.css">
+  <link rel="stylesheet" href="watch.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Player -->
+<section class="player-section">
+  <div class="player-wrap" id="player-wrap">
+    <video id="main-player" class="main-video" preload="metadata">
+      <track id="sub-track" kind="subtitles" label="English" srclang="en" default>
+      Your browser does not support video.
+    </video>
+    <!-- Click zone -->
+    <div class="player-click" onclick="togglePlay()"></div>
+    <!-- Play icon flash -->
+    <div class="play-flash" id="play-flash"><i class="fa-solid fa-play"></i></div>
+    <!-- Controls -->
+    <div class="player-controls" id="player-controls">
+      <div class="progress-row">
+        <span id="t-current">0:00</span>
+        <div class="prog-wrap" id="prog-wrap">
+          <div class="prog-bg">
+            <div class="prog-buf" id="prog-buf"></div>
+            <div class="prog-fill" id="prog-fill"></div>
+          </div>
+        </div>
+        <span id="t-total">0:00</span>
+      </div>
+      <div class="ctrl-row">
+        <div class="ctrl-left">
+          <button class="ctrl-btn" id="play-btn" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
+          <button class="ctrl-btn" onclick="skipBack()" title="Rewind 10s"><i class="fa-solid fa-rotate-left"></i><span style="font-size:10px;margin-left:2px;">10</span></button>
+          <button class="ctrl-btn" onclick="skipFwd()"  title="Forward 10s"><i class="fa-solid fa-rotate-right"></i><span style="font-size:10px;margin-left:2px;">10</span></button>
+          <div class="vol-wrap">
+            <button class="ctrl-btn" id="vol-btn" onclick="toggleMute()"><i class="fa-solid fa-volume-high"></i></button>
+            <input type="range" id="vol-slider" class="vol-slider" min="0" max="1" step="0.05" value="1" oninput="setVol(this.value)">
+          </div>
+        </div>
+        <div class="ctrl-right">
+          <button class="ctrl-btn" id="sub-btn" onclick="toggleSubs()" title="Subtitles"><i class="fa-solid fa-closed-captioning"></i></button>
+          <select class="speed-sel" onchange="setSpeed(this.value)">
+            <option value="0.5">0.5×</option><option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option><option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option><option value="2">2×</option>
+          </select>
+          <button class="ctrl-btn" onclick="toggleFS()" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Episodes (series only) -->
+  <div id="eps-section" style="display:none;">
+    <div class="eps-header">
+      <h3>Episodes</h3>
+      <select id="season-sel" class="season-sel" onchange="loadSeason(this.value)"></select>
+    </div>
+    <div class="eps-list" id="eps-list"></div>
+  </div>
+</section>
+
+<!-- Info -->
+<section class="info-section">
+  <div class="info-layout">
+    <div class="info-poster-col">
+      <div class="info-poster-wrap" onclick="playTrailer()">
+        <img id="info-poster" src="" alt="" class="info-poster">
+        <div class="trailer-hint"><i class="fa-solid fa-play"></i> Trailer</div>
+      </div>
+      <button class="fav-btn-big" id="fav-btn" onclick="handleFav()"><i class="fa-regular fa-heart"></i> Add to Favourites</button>
+    </div>
+    <div class="info-details">
+      <h1 class="info-title" id="info-title">Loading…</h1>
+      <div class="info-meta" id="info-meta"></div>
+      <p class="info-desc" id="info-desc"></p>
+      <div class="info-tags" id="info-tags"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Similar -->
+<section class="similar-section">
+  <div class="similar-inner">
+    <h2 class="section-title"><i class="fa-solid fa-film"></i> You Might Also Like</h2>
+    <div class="cards-grid" id="similar-grid"></div>
+  </div>
+</section>
+
+<!-- Trailer modal -->
+<div class="trailer-modal" id="trailer-modal" onclick="closeTrailer()">
+  <div class="trailer-inner" onclick="event.stopPropagation()">
+    <button class="trailer-close" onclick="closeTrailer()"><i class="fa-solid fa-xmark"></i></button>
+    <iframe id="trailer-iframe" src="" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script src="/shared/data.js"></script>
+<script src="/shared/auth.js"></script>
+<script src="/shared/navbar.js"></script>
+<script src="watch.js"></script>
+</body></html>

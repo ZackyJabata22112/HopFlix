@@ -1,0 +1,9 @@
+body { background: var(--black); }
+
+.sidebar { position: sticky; top: calc(var(--nav-height) + 16px); }
+
+.genre-section { margin-bottom: 40px; }
+.genre-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
+}

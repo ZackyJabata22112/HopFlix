@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopFlix — Admin Panel</title>
+  <link rel="stylesheet" href="/shared/main.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="page-banner">
+  <div class="page-banner-inner">
+    <h1><i class="fa-solid fa-shield-halved"></i> Admin Panel</h1>
+    <p>Manage movies and TV shows on HopFlix</p>
+  </div>
+</div>
+
+<div class="admin-layout">
+
+  <!-- Sidebar nav -->
+  <aside class="admin-side">
+    <button class="admin-nav-btn active" onclick="showSection('add',this)">
+      <i class="fa-solid fa-plus"></i> Add Content
+    </button>
+    <button class="admin-nav-btn" onclick="showSection('manage',this)">
+      <i class="fa-solid fa-list"></i> Manage Content
+    </button>
+    <button class="admin-nav-btn" onclick="showSection('users',this)">
+      <i class="fa-solid fa-users"></i> Users
+    </button>
+  </aside>
+
+  <!-- Main area -->
+  <main class="admin-main">
+
+    <!-- ADD CONTENT -->
+    <section id="sec-add" class="admin-section">
+      <h2 class="admin-section-title"><i class="fa-solid fa-plus-circle"></i> Add New Movie or TV Show</h2>
+      <div class="admin-msg" id="add-msg" style="display:none;"></div>
+
+      <div class="admin-form-grid">
+        <div class="af"><label>Title *</label><input type="text" id="a-title" placeholder="e.g. Inception"></div>
+        <div class="af">
+          <label>Type *</label>
+          <select id="a-type" onchange="toggleSeriesFields()">
+            <option value="movie">Movie</option>
+            <option value="series">TV Series</option>
+          </select>
+        </div>
+        <div class="af"><label>Year *</label><input type="number" id="a-year" placeholder="e.g. 2024" min="1900" max="2099"></div>
+        <div class="af"><label>Rating (0–10) *</label><input type="number" id="a-rating" placeholder="e.g. 8.5" min="0" max="10" step="0.1"></div>
+        <div class="af af-full"><label>Description *</label><textarea id="a-desc" rows="3" placeholder="Short plot summary…"></textarea></div>
+        <div class="af"><label>Cover URL <small>(or path)</small></label><input type="text" id="a-cover" placeholder="/images/covers/my-movie.jpg"></div>
+        <div class="af"><label>Trailer YouTube URL</label><input type="text" id="a-trailer" placeholder="https://www.youtube.com/embed/VIDEO_ID"></div>
+        <div class="af"><label>Genres *</label><input type="text" id="a-genres" placeholder="Action, Drama, Sci-Fi (comma-separated)"></div>
+        <div class="af" id="a-duration-wrap"><label>Duration</label><input type="text" id="a-duration" placeholder="2h 15m"></div>
+        <div class="af" id="a-seasons-wrap" style="display:none;"><label>Number of Seasons</label><input type="number" id="a-seasons" placeholder="3" min="1" max="50" value="1"></div>
+        <div class="af" id="a-eps-wrap" style="display:none;"><label>Episodes per Season</label><input type="number" id="a-eps" placeholder="13" min="1" max="100" value="13"></div>
+        <div class="af af-full">
+          <label>Featured in Carousel?</label>
+          <label class="toggle-label"><input type="checkbox" id="a-featured"> Yes, show in home carousel</label>
+        </div>
+      </div>
+
+      <button class="admin-submit-btn" onclick="addContent()">
+        <i class="fa-solid fa-plus"></i> Add to HopFlix
+      </button>
+    </section>
+
+    <!-- MANAGE CONTENT -->
+    <section id="sec-manage" class="admin-section" style="display:none;">
+      <h2 class="admin-section-title"><i class="fa-solid fa-list"></i> All Content</h2>
+      <div class="admin-search-row">
+        <input type="text" id="manage-search" placeholder="Filter by title…" oninput="filterManage(this.value)">
+        <select id="manage-type-filter" onchange="filterManage(document.getElementById('manage-search').value)">
+          <option value="">All Types</option>
+          <option value="movie">Movies</option>
+          <option value="series">Series</option>
+        </select>
+      </div>
+      <div class="admin-msg" id="manage-msg" style="display:none;"></div>
+      <table class="admin-table">
+        <thead><tr><th>Cover</th><th>Title</th><th>Type</th><th>Year</th><th>Rating</th><th>Views</th><th>Actions</th></tr></thead>
+        <tbody id="manage-tbody"></tbody>
+      </table>
+    </section>
+
+    <!-- USERS -->
+    <section id="sec-users" class="admin-section" style="display:none;">
+      <h2 class="admin-section-title"><i class="fa-solid fa-users"></i> Registered Users</h2>
+      <table class="admin-table">
+        <thead><tr><th>Username</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+        <tbody id="users-tbody"></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script src="/shared/data.js"></script>
+<script src="/shared/auth.js"></script>
+<script src="/shared/navbar.js"></script>
+<script src="admin.js"></script>
+</body></html>

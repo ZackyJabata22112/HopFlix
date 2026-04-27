@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopFlix — Home</title>
+  <link rel="stylesheet" href="/shared/main.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Carousel -->
+<section class="carousel-section" id="carousel-section">
+  <div class="carousel" id="carousel"></div>
+  <button class="carousel-btn prev" onclick="carouselPrev()"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="carousel-btn next" onclick="carouselNext()"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="carousel-dots" id="carousel-dots"></div>
+</section>
+
+<!-- Page layout -->
+<div class="page-layout">
+  <main class="main-col">
+    <section class="content-section" id="search-section" style="display:none;">
+      <h2 class="section-title" id="search-title">Search Results</h2>
+      <div class="cards-grid" id="search-grid"></div>
+    </section>
+
+    <section class="content-section" id="browse-section">
+      <div class="browse-header">
+        <h2 class="section-title">Browse All</h2>
+        <div class="browse-filters">
+          <button class="filter-btn active" data-filter="all"   onclick="setFilter('all',this)">All</button>
+          <button class="filter-btn"        data-filter="movie"  onclick="setFilter('movie',this)">Movies</button>
+          <button class="filter-btn"        data-filter="series" onclick="setFilter('series',this)">Series</button>
+        </div>
+      </div>
+      <div class="cards-grid" id="browse-grid"></div>
+      <div class="pagination" id="browse-pages"></div>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-title"><i class="fa-solid fa-fire"></i> Trending This Week</div>
+      <div id="trending-list"></div>
+    </div>
+  </aside>
+</div>
+
+<script src="/shared/data.js"></script>
+<script src="/shared/auth.js"></script>
+<script src="/shared/navbar.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

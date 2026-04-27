@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopFlix — Watch Movies &amp; TV Shows</title>
+  <link rel="stylesheet" href="/shared/main.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar injected by navbar.js (search hidden via .idx-no-search) -->
+
+<main class="idx-main">
+  <div class="idx-glow tl"></div>
+  <div class="idx-glow br"></div>
+
+  <div class="idx-hero-logo">
+    <img src="/images/logo.png" alt="HopFlix" class="idx-logo-img">
+    <h1 class="idx-title">Hop<span>Flix</span></h1>
+  </div>
+
+  <br>
+  <p class="idx-tagline">Your pond for movies &amp; TV shows.</p>
+
+  <div class="idx-search-wrap">
+    <div class="idx-search-box">
+      <i class="fa-solid fa-magnifying-glass idx-search-icon"></i>
+      <input type="text" id="idx-search" placeholder="Search for a movie or TV show..." autocomplete="off">
+      <button class="idx-search-btn" onclick="doIdxSearch()">Search</button>
+    </div>
+    <div class="idx-search-results" id="idx-results"></div>
+  </div>
+
+  <p class="idx-desc">Dive into a world of entertainment. Stream the latest movies and binge your favourite TV series, all in one place.</p>
+
+  <div class="idx-social">
+    <a href="#" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+  </div>
+
+  <a href="/pages/home/home.html" class="idx-cta"><i class="fa-solid fa-play"></i> Visit Full Site</a>
+</main>
+
+<footer class="idx-footer">
+  <p>© 2026 HopFlix · All rights reserved.</p>
+</footer>
+
+<script src="/shared/data.js"></script>
+<script src="/shared/auth.js"></script>
+<script src="/shared/navbar.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

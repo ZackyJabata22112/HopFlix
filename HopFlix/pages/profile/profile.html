@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopFlix — Profile</title>
+  <link rel="stylesheet" href="/shared/main.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Profile header with banner -->
+<div class="profile-banner" id="profile-banner">
+  <div class="banner-overlay"></div>
+  <label class="banner-change-btn" title="Change banner">
+    <i class="fa-solid fa-image"></i> Change Banner
+    <input type="file" id="banner-upload" accept="image/*" style="display:none;" onchange="handleBannerUpload(this)">
+  </label>
+  <button class="banner-remove-btn" id="banner-remove-btn" onclick="removeBanner()" title="Remove banner" style="display:none;">
+    <i class="fa-solid fa-xmark"></i> Remove Banner
+  </button>
+</div>
+
+<div class="profile-header-row">
+  <div class="profile-header-inner">
+    <div class="profile-av-wrap">
+      <div class="profile-av" id="profile-av"></div>
+    </div>
+    <div class="profile-info">
+      <h1 class="profile-name" id="profile-name">Loading…</h1>
+      <p class="profile-email" id="profile-email"></p>
+      <p class="profile-joined" id="profile-joined"></p>
+    </div>
+    <div class="profile-actions">
+      <button class="profile-edit-btn" onclick="toggleEdit()"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+      <button class="profile-logout-btn" onclick="logoutUser();window.location.href='/pages/home/home.html'">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Panel -->
+<div class="edit-panel" id="edit-panel" style="display:none;">
+  <div class="edit-inner">
+    <h2>Edit Profile</h2>
+    <div class="edit-grid">
+      <div class="ef">
+        <label>Username</label>
+        <input type="text" id="e-user" placeholder="Username">
+      </div>
+      <div class="ef">
+        <label>Email</label>
+        <input type="email" id="e-email" placeholder="Email">
+      </div>
+      <div class="ef">
+        <label>Profile Picture</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="file" id="e-avatar-file" accept="image/*" style="flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:7px;padding:6px 10px;color:var(--text);font-size:12px;" onchange="handleAvatarFile(this)">
+        </div>
+      </div>
+      <div class="ef">
+        <label>Old Password <small>(required to change password)</small></label>
+        <div class="pass-wrap">
+          <input type="password" id="e-old-pass" placeholder="Current password">
+          <button class="show-pass" onclick="togglePass('e-old-pass',this)"><i class="fa-solid fa-eye"></i></button>
+        </div>
+      </div>
+      <div class="ef">
+        <label>New Password <small>(leave blank to keep current)</small></label>
+        <div class="pass-wrap">
+          <input type="password" id="e-new-pass" placeholder="New password (8+ chars)">
+          <button class="show-pass" onclick="togglePass('e-new-pass',this)"><i class="fa-solid fa-eye"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="edit-btns">
+      <button class="save-btn" onclick="saveProfile()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      <button class="cancel-btn" onclick="toggleEdit()">Cancel</button>
+    </div>
+    <div class="edit-msg" id="edit-msg" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="profile-tabs-wrap">
+  <div class="profile-tabs">
+    <button class="tab-btn active" data-tab="continue"  onclick="switchTab('continue')">
+      <i class="fa-solid fa-play"></i> Continue Watching
+    </button>
+    <button class="tab-btn" data-tab="history"    onclick="switchTab('history')">
+      <i class="fa-solid fa-clock-rotate-left"></i> Watch History
+    </button>
+    <button class="tab-btn" data-tab="favourites" onclick="switchTab('favourites')">
+      <i class="fa-solid fa-heart"></i> Favourites
+    </button>
+  </div>
+</div>
+
+<!-- Tab Content -->
+<div class="profile-content">
+  <div class="tab-panel active" id="tab-continue">
+    <div class="cards-grid" id="continue-grid"></div>
+  </div>
+  <div class="tab-panel" id="tab-history">
+    <div class="cards-grid" id="history-grid"></div>
+  </div>
+  <div class="tab-panel" id="tab-favourites">
+    <div class="cards-grid" id="fav-grid"></div>
+  </div>
+</div>
+
+<script src="/shared/data.js"></script>
+<script src="/shared/auth.js"></script>
+<script src="/shared/navbar.js"></script>
+<script src="profile.js"></script>
+</body></html>

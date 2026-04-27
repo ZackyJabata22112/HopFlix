@@ -1,0 +1,2 @@
+body { background: var(--black); }
+.sidebar { position: sticky; top: calc(var(--nav-height) + 16px); }
